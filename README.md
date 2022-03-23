@@ -1,5 +1,7 @@
 # fl_nametag
 
+[![https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')
+
 ## Dependencies
 
 - [ESX Legacy](https://github.com/esx-framework/esx-legacy 'ESX Legacy')
