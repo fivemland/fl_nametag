@@ -46,7 +46,7 @@ function playerStreamer()
 
 						local serverId = tonumber(GetPlayerServerId(player))
 						if distance <= STREAM_DISTANCE and playerNames[serverId] then
-							local talking = MumbleIsPlayerTalking() or NetworkIsPlayerTalking()
+							local talking = MumbleIsPlayerTalking(player) or NetworkIsPlayerTalking(player)
 
 							streamedPlayers[serverId] = {
 								playerId = player,
