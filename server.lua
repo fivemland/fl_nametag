@@ -15,18 +15,6 @@ CreateThread(function()
 
 		playerNames[tonumber(player)] = xPlayer.getName()
 	end
-
-	-- Wait(1000)
-
-	-- MySQL.query("SELECT identifier, firstJoin FROM users", function(result)
-	-- 	if not result or #result <= 0 then
-	-- 		return
-	-- 	end
-
-	-- 	for _, row in pairs(result) do
-	-- 		joinTimes[row.identifier] = row.firstJoin
-	-- 	end
-	-- end)
 end)
 
 function getPlayerFirstJoin(player)
