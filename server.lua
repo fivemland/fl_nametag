@@ -28,13 +28,21 @@ function getPlayerFirstJoin(player)
 end
 exports("getPlayerFirstJoin", getPlayerFirstJoin)
 
-RegisterNetEvent("requestPlayerNames", function()
-	local xPlayer = ESX.GetPlayerFromId(source)
-
-	playerNames[source] = xPlayer.getName()
-	if not joinTimes[source] then
-		joinTimes[source] = getPlayerFirstJoin(source)
+function updateNametag(playerId)
+	local xPlayer = ESX.GetPlayerFromId(playerId)
+	playerNames[playerId] = xPlayer.getName()
+	if not joinTimes[playerId] then
+		joinTimes[playerId] = getPlayerFirstJoin(playerId)
 	end
 
 	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
+end
+
+RegisterNetEvent("requestPlayerNames", function()
+	updateNametag(source)
+end)
+
+AddEventHandler("esx_identity:characterUpdated", function(playerId)
+	Wait(1000)
+	updateNametag(playerId)
 end)
