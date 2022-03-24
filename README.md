@@ -1,6 +1,7 @@
 # fl_nametag
 
 [![https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')
+[![https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png](https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png')](https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png')
 
 ## Dependencies
 

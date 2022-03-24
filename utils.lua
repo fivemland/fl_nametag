@@ -1,33 +1,28 @@
-function DrawText3D(coords, text, text2, scale, r, g, b, alpha)
+function DrawText3D(coords, texts, scale, alpha)
 	scale = scale or 1
-
-	r = r or 255
-	g = g or 255
-	b = b or 255
 
 	SetDrawOrigin(coords)
 
-	SetTextScale(0.3 * scale, 0.3 * scale)
-	SetTextFont(0)
-	SetTextProportional(1)
-	SetTextColour(r, g, b, math.floor(alpha))
-	SetTextOutline()
-	SetTextCentre(1)
-	BeginTextCommandDisplayText("STRING")
-	AddTextComponentString(text)
-	EndTextCommandDisplayText(0, 0)
-
-	if text2 then
-		SetTextScale(0.25 * scale, 0.25 * scale)
+	for _, text in pairs(texts) do
+		SetTextScale((text.scale or 0.3) * scale, (text.scale or 0.3) * scale)
 		SetTextFont(0)
-		SetTextProportional(1)
-		SetTextColour(255, 150, 0, math.floor(alpha))
+
+		local r, g, b = table.unpack(text.color or { 255, 255, 255, alpha })
+		r = r or 255
+		g = g or 255
+		b = b or 255
+
+		SetTextWrap(0.0, 1.0)
+		SetTextColour(r, g, b, math.floor(alpha))
 		SetTextOutline()
 		SetTextCentre(1)
-
 		BeginTextCommandDisplayText("STRING")
-		AddTextComponentString(text2)
-		EndTextCommandDisplayText(0, -0.015)
+		AddTextComponentString(text.text)
+
+		local x, y = table.unpack(text.pos or { 0, 0 })
+		x = x or 0
+		y = y or 0
+		EndTextCommandDisplayText(x, y)
 	end
 
 	ClearDrawOrigin()

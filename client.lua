@@ -46,17 +46,12 @@ function playerStreamer()
 
 						local serverId = tonumber(GetPlayerServerId(player))
 						if distance <= STREAM_DISTANCE and playerNames[serverId] then
-							local talking = MumbleIsPlayerTalking(player) or NetworkIsPlayerTalking(player)
-
 							streamedPlayers[serverId] = {
 								playerId = player,
 								ped = playerPed,
-								label = (playerNames[serverId] or "")
-									.. " ("
-									.. serverId
-									.. ")"
-									.. (talking and SPEAK_ICON or ""),
+								label = (playerNames[serverId] or "") .. " (" .. serverId .. ")",
 								newbie = isNewbie(serverId),
+								talking = MumbleIsPlayerTalking(player) or NetworkIsPlayerTalking(player),
 							}
 						end
 					end
@@ -85,16 +80,20 @@ function drawNames()
 			local scale = 1 - dist / STREAM_DISTANCE
 
 			if scale > 0 then
-				DrawText3D(
-					coords,
-					playerData.label,
-					playerData.newbie and NEWBIE_TEXT or nil,
-					scale,
-					255,
-					255,
-					255,
-					200 * scale
-				)
+				DrawText3D(coords, {
+					{ text = playerData.label, color = { 255, 255, 255 } },
+					playerData.newbie and {
+						text = NEWBIE_TEXT,
+						pos = { 0, -0.017 },
+						color = { 255, 150, 0 },
+						scale = 0.25,
+					} or nil,
+					playerData.talking and {
+						text = SPEAK_ICON,
+						pos = { 0, -0.05 },
+						scale = 0.4,
+					} or nil,
+				}, scale, 200 * scale)
 			end
 		end
 
