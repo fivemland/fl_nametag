@@ -22,6 +22,11 @@ CreateThread(function()
 	CreateThread(playerStreamer)
 end)
 
+AddEventHandler("esx_skin:playerRegistered", function()
+	Wait(1000)
+	TriggerServerEvent("requestPlayerNames")
+end)
+
 RegisterNetEvent("receivePlayerNames", function(names, newbies)
 	playerNames = names
 	newbiePlayers = newbies
