@@ -3,6 +3,10 @@
 [![https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')
 [![https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png](https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png')](https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png')
 
+## Commands
+
+- /togmyname - own name display on / off
+
 ## Dependencies
 
 - [ESX Legacy](https://github.com/esx-framework/esx-legacy 'ESX Legacy')
