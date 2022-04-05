@@ -37,3 +37,52 @@ RegisterNetEvent("requestPlayerNames", function()
 
 	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
 end)
+
+RegisterCommand("changename", function(player, args, cmd)
+	if player == 0 then
+		return
+	end
+
+	local xPlayer = ESX.GetPlayerFromId(player)
+	if not xPlayer or not ADMIN_RANKS[xPlayer.getGroup()] then
+		return output("You do not have permission", player)
+	end
+
+	if #args < 2 then
+		return output("/changename [targetId] [new name]", player)
+	end
+
+	local xTarget = ESX.GetPlayerFromId(args[1])
+	if not xTarget then
+		return output("Player not found!", player)
+	end
+
+	table.remove(args, 1)
+
+	local oldName = xTarget.getName()
+	local newName = table.concat(args, " ")
+	local firstname, lastname = string.match(newName, "(.*)% (.*)")
+	if newName:len() < 10 or not firstname or not lastname then
+		return output("New name invalid!", player)
+	end
+
+	local exists = MySQL.scalar.await(
+		"SELECT COUNT(1) FROM users WHERE firstname = ? AND lastname = ?",
+		{ firstname, lastname }
+	)
+	if exists and exists == 1 then
+		return output("Name is already in use!", player)
+	end
+
+	xTarget.setName(newName)
+	exports.oxmysql:update(
+		"UPDATE users SET firstname = ?, lastname = ? WHERE identifier = ?",
+		{ firstname, lastname, xTarget.identifier }
+	)
+
+	playerNames[xTarget.source] = newName
+	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
+
+	output("Player name updated! old name: " .. oldName .. " new name: " .. newName, player)
+	output(GetPlayerName(player) .. " has updated your name. New name: " .. newName, xTarget.source)
+end, false)

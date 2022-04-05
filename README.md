@@ -6,6 +6,7 @@
 ## Commands
 
 - /togmyname - own name display on / off
+- /changename - Change player In-Game nick
 
 ## Dependencies
 
