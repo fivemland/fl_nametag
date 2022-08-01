@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://github.com/fivemland/fl_nametag/blob/main/assets/logo.png " width="100" height="100">
+</p>
+
 # fl_nametag
 
 [![https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png')](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png')
