@@ -2,7 +2,9 @@
 <img src="https://github.com/fivemland/fl_nametag/blob/main/assets/logo.png " width="100" height="100">
 </p>
 
-# fl_nametag
+<h1 align="center">
+FiveM Land Nametag
+</p>
 
 [![https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png')](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png')
 [![https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png')](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png')
