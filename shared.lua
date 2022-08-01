@@ -9,6 +9,14 @@ ADMIN_RANKS = {
 	["admin"] = true,
 }
 
+ADMINPANEL_SCRIPT = 'fl_adminpanel'
+ADMIN_COLOR = "#7cc576"
+ADMINLOGO = {
+	visible = true,
+	rotate = false,
+	size = 0.3
+}
+
 function output(text, target)
 	if IsDuplicityVersion() then --Server Side
 		TriggerClientEvent("chat:addMessage", target or -1, {
