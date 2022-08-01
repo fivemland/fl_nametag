@@ -20,9 +20,7 @@ function DrawText3D(coords, texts, scale, alpha)
 		AddTextComponentString(text.text)
 
 		local x, y = table.unpack(text.pos or { 0, 0 })
-		x = x or 0
-		y = y or 0
-		EndTextCommandDisplayText(x, y)
+		EndTextCommandDisplayText(x or 0, y or 0)
 	end
 
 	ClearDrawOrigin()
@@ -30,14 +28,10 @@ end
 
 function getPedHeadCoords(ped)
 	local coords = GetWorldPositionOfEntityBone(ped, GetPedBoneIndex(ped, 31086))
-	if coords == vector3(0, 0, 0) then
-		coords = GetEntityCoords(ped) + vector3(0, 0, 0.9)
-	else
-		coords = coords + vector3(0, 0, 0.3)
-	end
+	coords = coords == vector3(0, 0, 0) and GetEntityCoords(ped) + vector3(0, 0, 0.9) or coords + vector3(0, 0, 0.3)
 
-	local frameTime = GetFrameTime()
-	local vel = GetEntityVelocity(ped)
+	local frameTime <const> = GetFrameTime()
+	local vel <const> = GetEntityVelocity(ped)
 
 	coords = vector3(coords.x + vel.x * frameTime, coords.y + vel.y * frameTime, coords.z + vel.z * frameTime)
 
