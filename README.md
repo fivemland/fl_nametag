@@ -1,7 +1,7 @@
 # fl_nametag
 
-[![https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')](https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot.png')
-[![https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png](https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png')](https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/Screenshot2.png')
+[![https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png')](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot.png')
+[![https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png')](https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png 'https://github.com/fivemland/fl_nametag/blob/main/screenshots/Screenshot2.png')
 
 ## Commands
 
@@ -12,6 +12,10 @@
 
 - [ESX Legacy](https://github.com/esx-framework/esx-legacy 'ESX Legacy')
 - [oxmysql](https://github.com/overextended/oxmysql 'oxmysql')
+
+### Optional
+
+- [fl_adminpanel](https://github.com/fivemland/fl_adminpanel 'fl_adminpanel') - Support admin functions (logo, name)
 
 ## Exports
 
