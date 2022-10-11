@@ -34,7 +34,7 @@ FiveM Land Nametag
 - Sets my name visible state
 
 ```lua
-setMyNameVisible(state)
+exports.fl_nametag:setMyNameVisible(state)
 ```
 
 #### getMyNameVisible
@@ -42,7 +42,23 @@ setMyNameVisible(state)
 - return boolean
 
 ```lua
-local myName = getMyNameVisible()
+local myName = exports.fl_nametag:getMyNameVisible()
+```
+
+#### setNamesVisible
+
+- set nametag visible
+
+```lua
+exports.fl_nametag:setNamesVisible(state)
+```
+
+#### isNamesVisible
+
+- return: boolean
+
+```lua
+local namesVisible = exports.fl_nametag:isNamesVisible()
 ```
 
 ### Server
@@ -53,5 +69,5 @@ local myName = getMyNameVisible()
 - return: unix timestamp
 
 ```lua
-local firstJoin = getPlayerFirstJoin(player)
+local firstJoin = exports.fl_nametag:getPlayerFirstJoin(player)
 ```
