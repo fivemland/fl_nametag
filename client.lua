@@ -49,7 +49,7 @@ function playerStreamer()
 			local playerPed <const> = GetPlayerPed(player)
 
 			if player == localId and myName or player ~= localId then
-				if DoesEntityExist(playerPed) and HasEntityClearLosToEntity(localPed, playerPed, 17) then
+				if DoesEntityExist(playerPed) and HasEntityClearLosToEntity(localPed, playerPed, 17) and IsEntityVisible(playerPed) then
 					local playerCoords = GetEntityCoords(playerPed)
 					if IsSphereVisible(playerCoords, 0.0099999998) then
 						local distance <const> = #(localCoords - playerCoords)
