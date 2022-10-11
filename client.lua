@@ -3,11 +3,16 @@ local newbiePlayers = {}
 local streamedPlayers = {}
 local nameThread = false
 local myName = true
+local namesVisible = true
 
 local localPed = nil
 
 local txd = CreateRuntimeTxd("adminsystem")
 local tx = CreateRuntimeTextureFromImage(txd, "logo", "assets/logo.png")
+
+RegisterCommand("names", function()
+	setNamesVisible(not namesVisible)
+end)
 
 RegisterCommand("togmyname", function()
 	myName = not myName
@@ -38,10 +43,10 @@ end)
 function playerStreamer()
 	local adminPanel <const> = GetResourceState(ADMINPANEL_SCRIPT) == "started"
 
-	while true do
+	while namesVisible do
 		streamedPlayers = {}
-
 		localPed = PlayerPedId()
+
 		local localCoords <const> = GetEntityCoords(localPed)
 		local localId <const> = PlayerId()
 
@@ -78,6 +83,8 @@ function playerStreamer()
 
 		Wait(500)
 	end
+
+	streamedPlayers = {}
 end
 
 function drawNames()
@@ -152,3 +159,15 @@ function getMyNameVisible()
 	return myName
 end
 exports("getMyNameVisible", getMyNameVisible)
+
+function setNamesVisible(state)
+	namesVisible = state
+	if namesVisible then
+		CreateThread(playerStreamer)
+	end
+end
+exports("setNamesVisible", setNamesVisible)
+
+exports("isNamesVisible", function()
+	return namesVisible
+end)
