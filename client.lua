@@ -18,17 +18,15 @@ RegisterCommand("togmyname", function()
 	myName = not myName
 end)
 
-CreateThread(function()
-	while not ESX.IsPlayerLoaded() do
-		Wait(1)
-	end
-
+local function start()
 	Wait(1000)
 
 	TriggerServerEvent("requestPlayerNames")
 
 	CreateThread(playerStreamer)
-end)
+end
+CreateThread(start)
+RegisterNetEvent("esx:playerLoaded", start)
 
 AddEventHandler("esx_skin:playerRegistered", function()
 	Wait(1000)
