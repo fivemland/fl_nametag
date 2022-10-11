@@ -14,6 +14,7 @@ FiveM Land Nametag
 
 - /togmyname - own name display on / off
 - /changename - Change player In-Game nick
+- /names - toggle names visibility
 
 ## Dependencies
 
