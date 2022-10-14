@@ -38,6 +38,30 @@ RegisterNetEvent("requestPlayerNames", function()
 	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
 end)
 
+CreateThread(function()
+	Wait(1000)
+
+	for _, xPlayer in pairs(ESX.GetExtendedPlayers()) do
+		playerNames[xPlayer.source] = xPlayer.getName()
+
+		if not joinTimes[xPlayer.source] then
+			joinTimes[xPlayer.source] = getPlayerFirstJoin(xPlayer.source)
+		end
+	end
+
+	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
+end)
+
+AddEventHandler("esx:playerLoaded", function(player, xPlayer)
+	playerNames[player] = xPlayer.getName()
+
+	if not joinTimes[player] then
+		joinTimes[player] = getPlayerFirstJoin(player)
+	end
+
+	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
+end)
+
 RegisterCommand("changename", function(player, args, cmd)
 	if player == 0 then
 		return

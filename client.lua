@@ -18,16 +18,6 @@ RegisterCommand("togmyname", function()
 	myName = not myName
 end)
 
-local function start()
-	Wait(1000)
-
-	TriggerServerEvent("requestPlayerNames")
-
-	CreateThread(playerStreamer)
-end
-CreateThread(start)
-RegisterNetEvent("esx:playerLoaded", start)
-
 AddEventHandler("esx_skin:playerRegistered", function()
 	Wait(1000)
 	TriggerServerEvent("requestPlayerNames")
@@ -84,6 +74,7 @@ function playerStreamer()
 
 	streamedPlayers = {}
 end
+CreateThread(playerStreamer)
 
 function drawNames()
 	nameThread = true
