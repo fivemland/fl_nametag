@@ -29,9 +29,8 @@ RegisterNetEvent("receivePlayerNames", function(names, newbies)
 end)
 
 function playerStreamer()
-	local adminPanel <const> = GetResourceState(ADMINPANEL_SCRIPT) == "started"
-
 	while namesVisible do
+		local adminPanel <const> = GetResourceState(ADMINPANEL_SCRIPT) == "started"
 		streamedPlayers = {}
 		localPed = PlayerPedId()
 
