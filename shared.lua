@@ -5,7 +5,7 @@ NEWBIE_TEXT = "** Új a városban **"
 
 SPEAK_ICON = "🔊"
 
-ADMIN_RANKS = {
+ADMIN_RANKS = { --permission groups for /changename command
 	["admin"] = true,
 }
 
