@@ -50,10 +50,17 @@ function playerStreamer()
 						if distance <= STREAM_DISTANCE and playerNames[serverId] then
 							local adminDuty = adminPanel and exports[ADMINPANEL_SCRIPT]:isPlayerInAdminduty(serverId)
 
+							local label = (playerNames[serverId] or "")
+							if adminDuty then
+								local adminLabel <const> = adminPanel and exports[ADMINPANEL_SCRIPT]:getPlayerAdminLabel(serverId) or 'Admin'
+								label = GetPlayerName(player) .. ' <font color="' .. ADMIN_COLOR .. '">(' .. adminLabel .. ')</font>'
+							end
+							label = label .. " (" .. serverId .. ")"
+
 							streamedPlayers[serverId] = {
 								playerId = player,
 								ped = playerPed,
-								label = (adminDuty and GetPlayerName(player) .. ' <font color="' .. ADMIN_COLOR .. '">(Admin)</font>' or (playerNames[serverId] or "")) .. " (" .. serverId .. ")",
+								label = label,
 								newbie = isNewbie(serverId),
 								talking = MumbleIsPlayerTalking(player) or NetworkIsPlayerTalking(player),
 								adminDuty = adminDuty
