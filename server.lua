@@ -12,8 +12,9 @@ CreateThread(function()
 
 	for _, player in pairs(GetPlayers()) do
 		local xPlayer = ESX.GetPlayerFromId(player)
-
-		playerNames[tonumber(player)] = xPlayer.getName()
+		if xPlayer then
+			playerNames[tonumber(player)] = xPlayer.getName()
+		end
 	end
 end)
 
