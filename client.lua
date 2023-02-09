@@ -47,7 +47,7 @@ function playerStreamer()
 						local distance <const> = #(localCoords - playerCoords)
 
 						local serverId <const> = tonumber(GetPlayerServerId(player))
-						if distance <= STREAM_DISTANCE and playerNames[serverId] then
+						if serverId and distance <= STREAM_DISTANCE and playerNames[serverId] then
 							local adminDuty = adminPanel and exports[ADMINPANEL_SCRIPT]:isPlayerInAdminduty(serverId)
 
 							local label = (playerNames[serverId] or "")
