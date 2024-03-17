@@ -5,8 +5,16 @@ NEWBIE_TEXT = "** Új a városban **"
 
 SPEAK_ICON = "🔊"
 
+JOB_LABELS = true
+
 ADMIN_RANKS = { --permission groups for /changename command
 	["admin"] = true,
+}
+
+
+JOBS = {
+	['police'] = "Rendörség",
+	['ambulance'] = "Mentöszolgálat",
 }
 
 ADMINPANEL_SCRIPT = 'fl_adminpanel'
@@ -16,6 +24,10 @@ ADMINLOGO = {
 	rotate = false,
 	size = 0.3
 }
+
+JELVENY_COLOR = "FFF333"
+JELVENY_COMMAND = "jelveny"
+
 
 function output(text, target)
 	if IsDuplicityVersion() then --Server Side

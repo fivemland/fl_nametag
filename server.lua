@@ -1,6 +1,29 @@
 local playerNames = {}
 local joinTimes = {}
 
+-- JOB DUTY
+
+ESX.RegisterServerCallback("nametag:PlayerJob", function(source, cb)
+	local xSource = ESX.GetPlayerFromId(source)
+	cb(JOBS[xSource.getJob().name])
+end)
+
+ESX.RegisterServerCallback('changeJobDutyState', function(source, cb)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	local sb = Player(source).state
+	local newState2 <const> = not sb.jobDuty
+	sb.jobDuty = newState2
+	sb.jobLabel = JOB_LABELS and JOBS[xPlayer.getJob().name] .. " - " .. xPlayer.getJob().grade_label or nil
+end)
+
+function isPlayerInJobduty(player)
+	return Player(player).state.jobDuty
+end
+
+exports('isPlayerInJobduty', isPlayerInJobduty)
+-- JOIN TIMES
+
 CreateThread(function()
 	local result = MySQL.query.await("SHOW COLUMNS FROM `users` LIKE 'firstJoin'")
 	if not result or #result <= 0 then
@@ -18,6 +41,8 @@ CreateThread(function()
 	end
 end)
 
+
+
 function getPlayerFirstJoin(player)
 	local xPlayer = ESX.GetPlayerFromId(player)
 	if not xPlayer then
@@ -27,7 +52,10 @@ function getPlayerFirstJoin(player)
 	local result = MySQL.query.await("SELECT firstJoin FROM users WHERE identifier = ?", { xPlayer.identifier })
 	return (result and #result > 0) and result[1].firstJoin or 0
 end
+
 exports("getPlayerFirstJoin", getPlayerFirstJoin)
+
+-- PLAYER NAMES
 
 RegisterNetEvent("requestPlayerNames", function()
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -38,6 +66,7 @@ RegisterNetEvent("requestPlayerNames", function()
 
 	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
 end)
+
 
 CreateThread(function()
 	Wait(1000)
@@ -108,6 +137,6 @@ RegisterCommand("changename", function(player, args, cmd)
 	playerNames[xTarget.source] = newName
 	TriggerClientEvent("receivePlayerNames", -1, playerNames, joinTimes)
 
-	output("Player name updated! old name: " .. oldName .. " new name: " .. newName, player)
-	output(GetPlayerName(player) .. " has updated your name. New name: " .. newName, xTarget.source)
+	output("Játékos neve frissítve! Régi Név: " .. oldName .. " Új név: " .. newName, player)
+	output(GetPlayerName(player) .. " frissítette a neved. Új neved: " .. newName, xTarget.source)
 end, false)

@@ -10,13 +10,15 @@ local localPed = nil
 local txd = CreateRuntimeTxd("adminsystem")
 local tx = CreateRuntimeTextureFromImage(txd, "logo", "assets/logo.png")
 
+
 RegisterCommand("names", function()
 	setNamesVisible(not namesVisible)
-end)
+end, false)
+RegisterKeyMapping("names", "Név megjelenítése", "keyboard", "F9")
 
 RegisterCommand("togmyname", function()
 	myName = not myName
-end)
+end, false)
 
 AddEventHandler("esx_skin:playerRegistered", function()
 	Wait(1000)
@@ -27,6 +29,46 @@ RegisterNetEvent("receivePlayerNames", function(names, newbies)
 	playerNames = names
 	newbiePlayers = newbies
 end)
+
+RegisterCommand(JELVENY_COMMAND, function()
+	if not checkJob() then
+		return
+	else
+		ESX.TriggerServerCallback('changeJobDutyState', function()
+		end)
+	end
+end, false)
+
+function checkJob()
+	local p = promise.new()
+
+	ESX.TriggerServerCallback('nametag:PlayerJob', function(isJob)
+		p:resolve(isJob)
+	end)
+
+	return Citizen.Await(p)
+end
+
+function isPlayerInJobduty(player)
+	if (not player) then
+		return LocalPlayer.state.jobDuty
+	end
+
+	return Player(player).state.jobDuty
+end
+
+exports('isPlayerInJobduty', isPlayerInJobduty)
+
+function getPlayerJobLabel(player)
+	if (not player) then
+		return LocalPlayer.state.jobLabel or nil
+	end
+
+	return Player(player).state.jobLabel or nil
+end
+
+exports('getPlayerJobLabel', getPlayerJobLabel)
+
 
 function playerStreamer()
 	while namesVisible do
@@ -52,8 +94,10 @@ function playerStreamer()
 
 							local label = (playerNames[serverId] or "")
 							if adminDuty then
-								local adminLabel <const> = adminPanel and exports[ADMINPANEL_SCRIPT]:getPlayerAdminLabel(serverId) or 'Admin'
-								label = GetPlayerName(player) .. ' <font color="' .. ADMIN_COLOR .. '">(' .. adminLabel .. ')</font>'
+								local adminLabel <const> = adminPanel and
+								exports[ADMINPANEL_SCRIPT]:getPlayerAdminLabel(serverId) or 'Admin'
+								label = GetPlayerName(player) ..
+								' <font color="' .. ADMIN_COLOR .. '">(' .. adminLabel .. ')</font>'
 							end
 							label = label .. " (" .. serverId .. ")"
 
@@ -80,6 +124,7 @@ function playerStreamer()
 
 	streamedPlayers = {}
 end
+
 CreateThread(playerStreamer)
 
 function drawNames()
@@ -96,23 +141,25 @@ function drawNames()
 
 			if scale > 0 then
 				local newbieVisible <const> = (playerData.newbie and not playerData.adminDuty)
+				local jobDuty = isPlayerInJobduty(serverId)
+				local jobLabel = jobDuty and getPlayerJobLabel(serverId) or ''
 
 				DrawText3D(coords, {
 					{ text = playerData.label, color = { 255, 255, 255 } },
 					newbieVisible and {
 						text = NEWBIE_TEXT,
-						pos = { 0, -0.017 },
+						pos = { 0, -0.020 },
 						color = { 255, 150, 0 },
 						scale = 0.25,
 					} or nil,
-					playerData.talking and {
-						text = SPEAK_ICON,
-						pos = { 0, 0.025 },
-						scale = 0.4,
+					jobDuty and not playerData.adminDuty and {
+						text = '<font color="' .. JELVENY_COLOR .. '">(' .. jobLabel .. ')</font>',
+						pos = { 0, 0.020 },
+						scale = 0.25,
 					} or nil,
 				}, scale, 200 * scale)
 
-				if ADMINLOGO.visible and playerData.adminDuty then 
+				if ADMINLOGO.visible and playerData.adminDuty then
 					DrawMarker(
 						43,
 						coords + vector3(0, 0, 0.15),
@@ -123,10 +170,10 @@ function drawNames()
 						255,
 						255,
 						255,
-						false, --up-down anim
-						true, --face cam
+						false, -- up-down anim
+						true, -- face cam
 						0,
-						ADMINLOGO.rotate, --rotate
+						ADMINLOGO.rotate, -- rotate
 						"adminsystem",
 						"logo",
 						false --[[drawon ents]]
@@ -148,11 +195,13 @@ end
 function setMyNameVisible(state)
 	myName = state
 end
+
 exports("setMyNameVisible", setMyNameVisible)
 
 function getMyNameVisible()
 	return myName
 end
+
 exports("getMyNameVisible", getMyNameVisible)
 
 function setNamesVisible(state)
@@ -161,6 +210,7 @@ function setNamesVisible(state)
 		CreateThread(playerStreamer)
 	end
 end
+
 exports("setNamesVisible", setNamesVisible)
 
 exports("isNamesVisible", function()
