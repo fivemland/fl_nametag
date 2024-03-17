@@ -15,6 +15,7 @@ FiveM Land Nametag
 - /togmyname - own name display on / off
 - /changename - Change player In-Game nick
 - /names - toggle names visibility
+- /jelveny - toggle job badge
 
 ## Dependencies
 
@@ -62,6 +63,22 @@ exports.fl_nametag:setNamesVisible(state)
 local namesVisible = exports.fl_nametag:isNamesVisible()
 ```
 
+#### isPlayerInJobduty
+
+- returns wether the player is in JobDuty
+
+```lua
+local jobDuty = exports.fl_nametag:isPlayerInJobduty()
+```
+
+#### getPlayerJobLabel
+
+- returns the jobs label
+
+```lua
+local jobLabel = exports.fl_nametag:getPlayerJobLabel()
+```
+
 ### Server
 
 ##### getPlayerFirstJoin
@@ -71,4 +88,12 @@ local namesVisible = exports.fl_nametag:isNamesVisible()
 
 ```lua
 local firstJoin = exports.fl_nametag:getPlayerFirstJoin(player)
+```
+
+#### isPlayerInJobduty
+
+- returns wether the player is in JobDuty
+
+```lua
+local jobDuty = exports.fl_nametag:isPlayerInJobduty()
 ```
